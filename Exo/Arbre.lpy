@@ -1,0 +1,72 @@
+import random
+
+
+start_width = 1
+start_length = 1
+
+nbIter = 50
+
+branchMaxAge = 6
+
+trunkMaxAge = 20
+trunkBranchAge = 6
+
+Axiom: @Gc ;(0) Trunk(0, 1, 1)
+
+derivation length: nbIter
+
+production:
+
+Trunk(age, w, l):
+	e_w = w - (w/10)
+	
+	ta1 = random.randint(-5,5)
+	ta2 = random.randint(-5,5)
+	
+	if(age >= trunkBranchAge):
+		if(age <= trunkMaxAge):
+			if(random.randint(0,3) == 1):
+				a1 = random.randint(60,85)
+				a2 = random.randint(0,359)		
+					 		
+				produce \(ta1) +(ta2) _(w) F(l, e_w) [Trunk(age+1, e_w, l)] [\(a2) +(a1) f(-1) Branch(0, e_w/1.5, l)]
+			else:
+				produce \(ta1) +(ta2) _(w) F(l, e_w) Trunk(age+1, e_w, l)
+		else:
+		  produce Branch(4, e_w, l)
+	else:
+	  produce \(ta1) +(ta2) _(w) F(l, e_w) Trunk(age+1, e_w, l)
+
+Branch(age, w, l):
+
+	branchCount = random.randint(1,4)
+
+	a1 = random.randint(0,359)
+	a2 = random.randint(30,70)
+	
+	rot = 360/branchCount
+
+
+	if(age <= branchMaxAge):
+		if(age < 3):
+			e_w = w - (w/10)
+			produce _(w) F(l, e_w) ;Branch(age+1, e_w, l)
+
+		else:
+			e_w = w - (w/3)
+			
+			for i in range(branchCount):
+				
+				nproduce @Ts(0.3) [\(i*rot) +(a2) _(w) F(l*2, e_w) Branch(age+1, e_w, l)]
+
+
+#interpretation: 
+###### INITIALISATION ######
+
+__lpy_code_version__ = 1.1
+
+def __initialiseContext__(context):
+	import openalea.plantgl.all as pgl
+	Color_0 = pgl.Material("Color_0" , ambient = (128,117,112) , diffuse = 0.664062 , emission = (17,17,17) , shininess = 0.14 , )
+	Color_0.name = "Color_0"
+	context.turtle.setMaterial(0,Color_0)

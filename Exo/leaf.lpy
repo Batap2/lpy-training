@@ -1,0 +1,15 @@
+Axiom:
+  nproduce ,(2) _(0.02) { +(90) F(0.1) -(90) F(1) +(90)
+  nproduce F(1) -(40) F(1) -(40) F(0.5) -(120) 
+  nproduce F(1) +(80) F(2) -(120) F(2) +(80)
+  nproduce F(1) -(120) F(0.5) -(40) F(1) -(40) F(1)
+  nproduce +(90) F(1) -(90) F(0.1)} (True)
+
+derivation length: 1
+production:
+
+
+interpretation:
+
+
+endlsystem

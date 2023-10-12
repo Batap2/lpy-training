@@ -1,0 +1,43 @@
+from openalea.plantgl.all import *
+from math import degrees,pi,cos
+from random import uniform, seed
+
+seed(0)
+l = 50.
+nl = 5
+phyllotaxy = 90
+max_order = 6
+diameter = lambda u : 0.05+0.5*(1-u)
+branching = lambda u : 40*cos(pi/2*u)+10
+length = 1
+
+module  A
+Axiom:   _(diameter(0))  @Gc A(l-1,0)
+
+derivation length: int(l)
+production:
+
+A(x, order) :
+    u = 1-x/l 
+    if x <= 0 : produce
+    if x % nl == 0.0 and order < max_order:
+       nproduce   [ /(phyllotaxy*(x/nl))  &(branching(u)) A(x-1,  order+1) ]
+    produce Elasticity(0.02) F(length, diameter(u)) A(x-1, order)
+    
+   # SetGuide(shape,length)
+###### INITIALISATION ######
+
+__lpy_code_version__ = 1.1
+
+def __initialiseContext__(context):
+	import openalea.plantgl.all as pgl
+	shape = pgl.BezierCurve2D(	
+	    pgl.Point3Array([(-0.5, 0, 1),(-0.152877, -0.00499273, 1),(0.29143, -0.000311856, 1),(0.47869, -0.00697759, 1)]) , 
+	    )
+	shape.name = "shape"
+	panel_0 = ({'name': 'Panel 1', 'active': True, 'visible': True},[('Curve2D',shape)])
+	parameterset = [panel_0,]
+	context["__functions__"] = []
+	context["__curves__"] = [('shape',shape),]
+	context["__parameterset__"] = parameterset
+	context["shape"] = shape

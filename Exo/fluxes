@@ -1,0 +1,37 @@
+transport_speed = 0.2
+decay = 0.03
+max_beta = 2
+min_beta = 0
+
+nbEntity = 10
+
+min_level = 0.01
+max_level = 10
+
+def txt(val):
+  return str(round(val,2))[:5]
+
+Axiom: 
+  nproduce _(2) 
+  for i in range(nbEntity-1):
+    nproduce I(min_level, min_beta)
+  nproduce I(min_level, max_beta)
+
+def du(u, deltau, beta):
+    return u + deltau*transport_speed + beta - decay*u
+
+derivation length: 400
+production:
+
+I(a, ba) < I(p, bp) > I(b, bb) --> I(du(p, a+b-2*p, bp), bp)
+I(p, bp) > I(a, ba) --> I(du(p,a-p,bp), bp)
+I(a, ba) < I(p, bp) --> I(du(p,a-p,bp), bp)
+
+interpretation:
+
+I(a, c) :
+    alpha =  (a-min_level)/(max_level-min_level)
+    a += 0.1
+    produce InterpolateColors(4,3, alpha)F(3)[-(90)f(5)_(1)F(a)]F(3)
+
+endlsystem

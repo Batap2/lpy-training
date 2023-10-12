@@ -1,0 +1,12 @@
+a = 40
+def nextscale(s) :  return s/2.
+Axiom: ,(2) _(0.3) F(1, 0.25) A(1) 
+production:
+derivation length:6
+A(s) :
+    for i in range(4):
+        nproduce [ /(90*i)^ (a) F(s,0.1*s) A(nextscale(s))]
+    produce /(137.5) F(s,0.1*s) A(nextscale(s)) 
+       
+interpretation:
+A(s) --> @O(2*s)

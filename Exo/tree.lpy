@@ -1,0 +1,14 @@
+from random import random
+MAX_AGE, dr = 10, 0.03 # constants
+module Apex(age), Internode(length,radius)
+Axiom: Apex(0)
+derivation length: 5
+production:
+Apex(age) :
+if age < MAX_AGE:
+produce Internode(1+ random(),0.3)
+/(137)[+(30)Apex(age+1)]Apex(age+1)
+Internode(l,r) --> Internode(l,r+dr)
+interpretation:
+Internode(l,r) --> _(r) F(l)
+endlsystem

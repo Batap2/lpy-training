@@ -1,0 +1,21 @@
+from random import *
+module Segment
+dl = 0.5
+ds = 0.1
+Axiom: Elasticity(0.03) A
+
+derivation length: 4
+production:
+A:
+    nproduce \(137.5) Segment(1)
+    count = randint(2,4)
+    for i in range(count):
+        nproduce [/(i*(360./count)) &(60) A]
+        #nproduce Segment(1)[+(30*v*uniform(0,1)) ^(30*v*uniform(0,1)) A]
+#A --> Segment(1)[+(30) A][-(30) A]
+
+interpretation:
+
+A --> [,(choice([1,2,3,4,5,6])) @O(0.15) ]
+Segment(l) --> nF(l,ds)
+endlsystem

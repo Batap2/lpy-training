@@ -1,0 +1,28 @@
+import math
+
+def growth_logistic(t, L, tip, b):
+    return L/(1+math.exp(-(t-tip)/b))
+    
+phyllochrone = 1
+Li = 0.5
+Lf = 1
+dt = 0.01
+
+tip = phyllochrone/2
+b_i = 0.15
+b_l = 0.3
+
+
+Axiom:  I(0) L(0) A(0)
+derivation length: 600
+production:
+A(t): 
+    if t > phyllochrone : produce /(137.5)I(0) L(0) A(0)
+    else: produce A(t+dt)
+
+I(t) --> I(t+dt)
+L(t) --> L(t+dt)
+
+interpretation:
+I(t) --> F(growth_logistic(t,Li,tip,b_i))
+L(t) --> [&(60*min(1,t)),(2) ~l(growth_logistic(t,Lf,tip,b_l))]

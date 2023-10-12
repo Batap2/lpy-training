@@ -1,0 +1,11 @@
+
+Axiom: -(90) _(0.01) F(1)
+
+derivation length: 2
+production:
+F(s) --> F(s/2) +(90) F(s/2) -(90) F(s/2) -(100) F(s/2) -(80) F(s/2 - (s/6)) +(80) F(s/2) +(100) F(s/2) +(90) F(s/2) -(90) F(s/2)
+
+interpretation:
+
+
+endlsystem

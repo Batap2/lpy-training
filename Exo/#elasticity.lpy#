@@ -1,0 +1,18 @@
+import numpy as np
+v = np.array([0.0,10.0,2.0])
+
+length = 10
+
+Axiom: FF[Tropism(v)+F+F]F[-F]F  
+#Axiom: -(90) Branch(length)
+
+derivation length: 10
+production:
+
+
+interpretation:
+Branch(l):
+  for i in range(l):
+    nproduce Tropism(v) f(0.1) F(1)
+
+endlsystem

@@ -1,0 +1,28 @@
+from openalea.plantgl.all import *
+
+Axiom: P(Vector2(0,0)) E P(Vector2(0,1)) E P(Vector2(1,1)) E P(Vector2(1,0)) E P(Vector2(2,0)) E P(Vector2(1,-1)) E P(Vector2(0,0))
+
+derivation length: 3
+production:
+
+#Chaikin
+#P(vl) < E > P(vr) -->E P(0.25*(vl+3*vr)) E
+#P(v) > E P(vr) --> P(0.25*(3*v+vr)) 
+
+#Dyn
+#P(vl) < E > P(vr) -->E P((vl+vr)/2) E
+#P(vl) E < P(v) > E P(vr) --> P((6*v+vr+vl)/8)
+#P(v) > E P(vr) --> P((7*v + vr)/8)
+#P(vl) E < P(v) --> P((7*v + vl)/8)
+
+#4pts
+P(v)-->P(v)
+P(v2) E P(v1)<E>P(v1a)E P(v2a)--> E P((-v2+9*v1+9*v1a-v2a)/16) E
+P(v1)<E>P(v1a)--> E P((8*v1+8*v1a)/16) E
+
+interpretation:
+
+P(vl) < E > P(vr) --> ,(5) _(0.02) OLineTo(0,vr[0],vr[1])
+P(v) --> ,(3)@O(0.04)
+
+endlsystem

@@ -1,0 +1,10 @@
+Axiom: -(90) F(5) SetColor(2) +(120) F(5) SetColor(3) +(120) F(5)
+
+derivation length: 1
+production:
+
+
+interpretation:
+
+
+endlsystem

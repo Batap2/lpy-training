@@ -1,0 +1,13 @@
+s_top = 2/3
+s_lat = 0.5
+
+Axiom: A(1)
+
+derivation length: 7
+production: 
+A(s) --> _(s/100) F(s*0.1) [+(60)A(s * s_lat)] F(s*0.1)  [-(60) A(s * s_lat)] F(s*0.1) +(10) A(s * s_top)  
+
+interpretation:
+A(s) --> ~l(s)
+
+endlsystem

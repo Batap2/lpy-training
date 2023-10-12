@@ -1,0 +1,30 @@
+length = 10
+
+Axiom: SetGuide(path,length) Branch(length)
+
+derivation length: 1
+production:
+
+
+interpretation:
+Branch(l):
+  for i in range(l):
+    nproduce f(0.1) F(1)
+
+endlsystem
+###### INITIALISATION ######
+
+__lpy_code_version__ = 1.1
+
+def __initialiseContext__(context):
+	import openalea.plantgl.all as pgl
+	path = pgl.BezierCurve2D(	
+	    pgl.Point3Array([(-0.5, 0, 1),(-0.189434, 0.45359, 1),(0.182428, -0.37303, 1),(0.5, 0, 1)]) , 
+	    )
+	path.name = "path"
+	panel_0 = ({'name': 'Panel 1', 'active': True, 'visible': True},[('Curve2D',path)])
+	parameterset = [panel_0,]
+	context["__functions__"] = []
+	context["__curves__"] = [('path',path),]
+	context["__parameterset__"] = parameterset
+	context["path"] = path

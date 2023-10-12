@@ -1,0 +1,14 @@
+lenght = 10
+
+Axiom: Elasticity(0.02) -(90) Branch(lenght)
+
+derivation length: 1
+production:
+
+
+interpretation:
+Branch(l):
+  for i in range(l):
+    nproduce f(0.1) F(1)
+
+endlsystem

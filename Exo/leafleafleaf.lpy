@@ -1,0 +1,14 @@
+count = 10
+step = 2
+Axiom: 
+  for i in range(count):
+    nproduce F(10/count) /(360/(count/step)) [&(120) ,(2) ~l(2)]
+
+derivation length: 1
+production:
+
+
+interpretation:
+
+
+endlsystem

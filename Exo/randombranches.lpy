@@ -1,0 +1,41 @@
+from random import *
+#p11 = 0.750000 # probability of staying in a branched node
+#p00 = 0.250000 # probability of staying in an empty node
+pab = 0.75
+pba = 0.25
+
+Axiom: _(1) S 
+derivation length: 100
+
+# x=1 = branching state
+# x=0 = non-branching state 
+
+production:
+ignore: /
+S :
+    if random() <= 0.5: produce A
+    else : produce B
+
+A : #  branching
+    nproduce /(180)I[M] 
+    if random() <= pab:
+        nproduce B
+    else:
+        nproduce A
+
+
+B :  # non branching
+    nproduce I
+    if random() <= pba:
+        nproduce A
+    else:
+        nproduce B
+
+
+
+
+homomorphism:
+
+M --> ;(2)+F(20)
+I --> ;(1)F(2)
+A --> ;(1)@O(3)
